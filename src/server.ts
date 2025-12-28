@@ -2,12 +2,12 @@ import express from 'express';
 import path, { dirname } from 'path';
 import { existsSync } from 'fs';
 import { fileURLToPath } from 'url';
-import authRoutes from './routes/authRoutes';
-import todoRoutes from './routes/todoRoutes';
-import authMiddleware from './middleware/authMiddleware';
+import authRoutes from './routes/authRoutes.js';
+import todoRoutes from './routes/todoRoutes.js';
+import authMiddleware from './middleware/authMiddleware.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

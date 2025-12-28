@@ -1,43 +1,88 @@
+# Todo App Setup
+
+## 🐳 Docker Setup (Recommended)
+
+The easiest way to run this app is with Docker - no local database or environment setup needed!
+
 1. **Install Docker Desktop**
 
-2. **Generate the Prisma Client**:
+2. **Start the app**:
 
-`npx prisma generate`
+   ```bash
+   docker compose up -d
+   ```
 
-3. **Build your docker images**:
+   This will:
 
-`docker compose build`
+   - Pull PostgreSQL image
+   - Build the app image
+   - Run database migrations automatically
+   - Start both containers
 
-4. **Create PostgreSQL migrations and apply them**:
+3. **Access the App**:
+   Open `http://localhost:3000` in your browser
 
-`docker compose run app npx prisma migrate dev --name init`
+4. **Useful Docker Commands**:
+   - Stop containers: `docker compose down`
+   - View logs: `docker logs todo_app`
+   - Rebuild after code changes: `docker compose build && docker compose up -d`
+   - Access database: `docker exec -it todo_db psql -U postgres -d todoapp`
+   - Clean up: `docker system prune`
 
-_Also_ - to run/apply migrations if necessary:
+---
 
-`docker-compose run app npx prisma migrate deploy`
+## 💻 Local Development Setup
 
-5. **Boot up 2x docker containers**:
+If you want to run the app locally without Docker:
 
-`docker compose up`
+1. **Install dependencies**:
 
-_or_
+   ```bash
+   npm install
+   ```
 
-`docker compose up -d`
+2. **Set up environment variables**:
 
-If you want to boot it up without it commandeering your terminal (you'll have to stop if via Docker Desktop though).
+   ```bash
+   cp .env.example .env
+   ```
 
-6. **To login to docker PostgreSQL database (from a new terminal instance while docker containers are running) where you can run SQL commands and modify database!**:
+   Edit `.env` and configure:
 
-`docker exec -it postgres-db psql -U postgres -d todoapp`
+   - `DATABASE_URL`: Your PostgreSQL connection string
+   - `JWT_SECRET`: A secure random string
+   - `PORT`: App port (default: 3000)
 
-7. **To stop Docker containers**:
+3. **Set up PostgreSQL database**:
 
-`docker compose down`
+   - Install PostgreSQL locally, OR
+   - Run just the DB in Docker:
+     ```bash
+     docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=todoapp postgres:15-alpine
+     ```
+   - Update `DATABASE_URL` in `.env` accordingly
 
-8. **To delete all docker containers**:
+4. **Run database migrations**:
 
-`docker system prune`
+   ```bash
+   npx prisma migrate deploy
+   ```
 
-9. **Access the App**:
+5. **Build and start the app**:
 
-Open `localhost:3000` in your browser to see the frontend. You can register, log in, and manage your todo list from there.
+   ```bash
+   npm run build
+   npm start
+   ```
+
+6. **Access the App**:
+   Open `http://localhost:3000` in your browser
+
+---
+
+## 📝 Development Commands
+
+- Generate Prisma Client: `npx prisma generate`
+- Create new migration: `npx prisma migrate dev --name your_migration_name`
+- Open Prisma Studio: `npx prisma studio`
+- Build TypeScript: `npm run build`
