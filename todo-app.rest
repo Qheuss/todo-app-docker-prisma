@@ -1,0 +1,51 @@
+### GET /
+GET / HTTP/1.1
+Host: localhost:3000
+
+### POST /auth/register
+POST /auth/register HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{ 
+  "username": "testuser@gmail.com", "password": "testpass"
+}
+
+### POST /auth/login
+POST /auth/login HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{ 
+  "username": "test@test.test", "password": "test123456"
+}
+
+### GET /todos
+GET /todos HTTP/1.1
+Host: localhost:3000
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzY2ODY4NjI4LCJleHAiOjE3NjY5NTUwMjh9.XzGioAPA_m8eXPWoJIMYgtzEstFpSLivROFyRQSsaZA
+
+### POST /todos
+POST /todos HTTP/1.1
+Host: localhost:3000
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzY2ODY4NjI4LCJleHAiOjE3NjY5NTUwMjh9.XzGioAPA_m8eXPWoJIMYgtzEstFpSLivROFyRQSsaZA
+Content-Type: application/json
+
+{ 
+  "task": "New Todo Item"
+}
+
+### PUT /todos/id
+PUT /todos/9 HTTP/1.1
+Host: localhost:3000
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzY2ODY4NjI4LCJleHAiOjE3NjY5NTUwMjh9.XzGioAPA_m8eXPWoJIMYgtzEstFpSLivROFyRQSsaZA
+Content-Type: application/json
+
+{ 
+  "completed": 1
+}
+
+### DELETE /todos/id
+DELETE /todos/9 HTTP/1.1
+Host: localhost:3000
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzY2ODY4NjI4LCJleHAiOjE3NjY5NTUwMjh9.XzGioAPA_m8eXPWoJIMYgtzEstFpSLivROFyRQSsaZA
