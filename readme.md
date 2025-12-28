@@ -4,6 +4,12 @@
 
 The easiest way to run this app is with Docker - no local database or environment setup needed!
 
+# Todo App Setup
+
+## 🐳 Docker Setup (Recommended)
+
+The easiest way to run this app is with Docker - no local database or environment setup needed!
+
 1. **Install Docker Desktop**
 
 2. **Start the app**:
