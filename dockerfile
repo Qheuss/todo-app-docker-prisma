@@ -8,8 +8,11 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+ARG DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+ENV DATABASE_URL=${DATABASE_URL}
+
+RUN npx prisma generate && npx tsc -p tsconfig.gen.json && npm run build
 
 EXPOSE 3000
 
-CMD ["node", "dist/src/server.js"]
+CMD ["sh", "-c", "until npx prisma migrate deploy; do echo 'Waiting for DB...'; sleep 2; done; node dist/src/server.js"]

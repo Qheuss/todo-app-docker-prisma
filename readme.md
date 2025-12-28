@@ -23,11 +23,15 @@ The easiest way to run this app is with Docker - no local database or environmen
    Open `http://localhost:3000` in your browser
 
 4. **Useful Docker Commands**:
-   - Stop containers: `docker compose down`
-   - View logs: `docker logs todo_app`
-   - Rebuild after code changes: `docker compose build && docker compose up -d`
+   - Build + start: `npm run docker:up`
+   - Stop + remove: `npm run docker:down`
+   - View logs: `npm run docker:logs`
+   - Rebuild only: `npm run docker:build`
+   - List services: `npm run docker:ps`
    - Access database: `docker exec -it todo_db psql -U postgres -d todoapp`
-   - Clean up: `docker system prune`
+   - Clean up unused: `docker system prune`
+
+The app waits for Postgres to be ready and applies migrations automatically before starting.
 
 ---
 

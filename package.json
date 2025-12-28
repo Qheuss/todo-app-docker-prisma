@@ -7,7 +7,12 @@
     "dev": "tsx --watch --env-file=.env src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up -d --build",
+    "docker:logs": "docker logs -f todo_app",
+    "docker:down": "docker compose down -v",
+    "docker:ps": "docker compose ps"
   },
   "repository": {
     "type": "git",
